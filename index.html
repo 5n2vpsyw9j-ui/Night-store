@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Night Store — доставка вейпов, одноразок, IQOS и табака. Работаем ежедневно с 07:00 до 02:00. Быстрая доставка за 20–50 минут.">
+    <title>Night Store — Вейпы, Одноразки, IQOS, Табак</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #080a12;
+            --card-bg: rgba(18, 24, 43, 0.75);
+            --card-border: rgba(59, 130, 246, 0.2);
+            --accent-blue: #3b82f6;
+            --neon-cyan: #06b6d4;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --telegram-color: #0088cc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .marquee-container {
+            background: linear-gradient(90deg, rgba(59,130,246,0.1), rgba(6,182,212,0.1));
+            border-bottom: 1px solid var(--card-border);
+            border-top: 1px solid var(--card-border);
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-content { animation: none; }
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .profile-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-wrapper {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--neon-cyan));
+            padding: 3px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--neon-cyan);
+        }
+
+        .store-title {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .store-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #34d399;
+        }
+
+        .status-badge.closed {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item i {
+            font-size: 18px;
+            color: var(--neon-cyan);
+        }
+
+        .feature-item span {
+            font-size: 10.5px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        .section-title i {
+            color: var(--accent-blue);
+        }
+
+        .catalog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .catalog-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 136, 204, 0.1);
+            border: 1px solid rgba(0, 136, 204, 0.3);
+            padding: 14px 18px;
+            border-radius: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .catalog-btn:hover, .catalog-btn:focus {
+            border-color: var(--telegram-color);
+            background: rgba(0, 136, 204, 0.2);
+            outline: none;
+        }
+
+        .catalog-btn .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .catalog-btn i {
+            font-size: 20px;
+            color: var(--telegram-color);
+        }
+
+        .catalog-btn .fa-chevron-right {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .whatsapp-order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            padding: 14px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-question i {
+            font-size: 12px;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 16px 14px 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .faq-item.active {
+            border-color: var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--neon-cyan);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            ⚡ Доставка по городу 20–50 минут &nbsp;&bull;&nbsp; 100% Оригинальная продукция &nbsp;&bull;&nbsp; Работаем ежедневно с 07:00 до 02:00 &nbsp;&bull;&nbsp; Заказывайте через WhatsApp &nbsp;&bull;&nbsp; 
+            ⚡ Доставка по городу 20–50 минут &nbsp;&bull;&nbsp; 100% Оригинальная продукция &nbsp;&bull;&nbsp; Работаем ежедневно с 07:00 до 02:00 &nbsp;&bull;&nbsp; Заказывайте через WhatsApp &nbsp;&bull;&nbsp;
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="glass-card profile-header">
+            <div class="avatar-wrapper">
+                <div class="avatar">
+                    <i class="fa-solid fa-cloud-bolt"></i>
+                </div>
+            </div>
+            <h1 class="store-title">Night Store</h1>
+            <p class="store-subtitle">Премиальные электронные сигареты, поды, расходники и табак с быстрой доставкой.</p>
+            
+            <div id="statusBadge" class="status-badge">
+                <span id="statusText">⌛ Проверка...</span>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Быстро<br>20–50 мин</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>100%<br>Оригинал</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>07:00 – 02:00<br>Без выходных</span>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="section-title"><i class="fa-solid fa-book-open"></i>Наши каталоги в Telegram</h2>
+            <div class="catalog-list">
+                <a href="https://t.me/+uGZd5TTUEnU2NzEx" target="_blank" rel="noopener noreferrer" class="catalog-btn">
+                    <div class="left"><i class="fa-brands fa-telegram"></i><span>Glo & IQOS</span></div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                <a href="https://t.me/+3gHLs-JoNdk3NWM1" target="_blank" rel="noopener noreferrer" class="catalog-btn">
+                    <div class="left"><i class="fa-brands fa-telegram"></i><span>Вейпы и жидкости</span></div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                <a href="https://t.me/+Qx7AZlGzf_ZlZDJh" target="_blank" rel="noopener noreferrer" class="catalog-btn">
+                    <div class="left"><i class="fa-brands fa-telegram"></i><span>Одноразки</span></div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                <a href="https://t.me/+l7A4eomppJA1Y2Fl" target="_blank" rel="noopener noreferrer" class="catalog-btn">
+                    <div class="left"><i class="fa-brands fa-telegram"></i><span>Отзывы клиентов</span></div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="section-title"><i class="fa-brands fa-whatsapp"></i>Быстрый заказ в WhatsApp</h2>
+            <form class="order-form" onsubmit="sendWhatsAppOrder(event)">
+                <div class="form-group">
+                    <label for="orderCategory">Категория:</label>
+                    <select id="orderCategory" name="category" class="form-control">
+                        <option value="Одноразки">🌬️ Одноразки</option>
+                        <option value="Вейпы и жидкости">💨 Вейпы и жидкости</option>
+                        <option value="Glo / IQOS">🔥 Glo / IQOS</option>
+                        <option value="Табак / Другое">🌿 Табак / Другое</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderItem">Модель / Вкус:</label>
+                    <input type="text" id="orderItem" name="item" class="form-control" placeholder="Например: Elf Bar 10000">
+                </div>
+
+                <div class="form-group">
+                    <label for="orderTime">Время доставки:</label>
+                    <input type="text" id="orderTime" name="time" class="form-control" placeholder="Как можно быстрее">
+                </div>
+
+                <div class="form-group">
+                    <label for="orderAddress">Адрес доставки:</label>
+                    <input type="text" id="orderAddress" name="address" class="form-control" placeholder="Улица, дом, квартира">
+                </div>
+
+                <button type="submit" class="whatsapp-order-btn">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Отправить заказ
+                </button>
+            </form>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="section-title"><i class="fa-solid fa-circle-question"></i>Частые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Как быстро приедет заказ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Курьер доставляет заказ в среднем за 20–50 минут в зависимости от загруженности дорог.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Оригинальная продукция?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Да, мы продаем 100% оригинальную продукцию от прямых поставщиков.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>График работы?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Мы работаем каждый день с 07:00 утра до 02:00 ночи по местному времени без выходных.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; <span id="currentYear"></span> Night Store. Все права защищены.</p>
+            <p>18+ Строго для совершеннолетних</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Проверка времени по часовому поясу Казахстана (UTC+5)
+        function checkStoreStatus() {
+            const now = new Date();
+            const kzHours = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Almaty"})).getHours();
+            
+            const isOpen = kzHours >= 7 || kzHours < 2;
+            const badge = document.getElementById('statusBadge');
+            const text = document.getElementById('statusText');
+
+            if (isOpen) {
+                badge.classList.remove('closed');
+                text.innerText = '🟢 Сейчас работаем • Принимаем заказы';
+            } else {
+                badge.classList.add('closed');
+                text.innerText = '🌙 Сейчас отдых • Ответим с 07:00';
+            }
+        }
+
+        // Перенаправление в WhatsApp с закодированными спецсимволами
+        function sendWhatsAppOrder(event) {
+            event.preventDefault();
+            const category = document.getElementById('orderCategory').value;
+            const item = document.getElementById('orderItem').value.trim();
+            const time = document.getElementById('orderTime').value.trim();
+            const address = document.getElementById('orderAddress').value.trim();
+
+            let message = `Здравствуйте! Хочу сделать заказ:\n\n📌 Категория: ${category}`;
+            if (item) message += `\n🛍️ Товар: ${item}`;
+            if (time) message += `\n⏰ Время: ${time}`;
+            if (address) message += `\n🏠 Адрес: ${address}`;
+
+            const url = `https://wa.me/77474968253?text=${encodeURIComponent(message)}`;
+            window.location.href = url;
+        }
+
+        // Переключение FAQ
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+        }
+
+        // Автоматический год в футере
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+        // Инициализация
+        checkStoreStatus();
+        setInterval(checkStoreStatus, 60000); // автообновление каждую минуту
+    </script>
+</body>
+</html>
